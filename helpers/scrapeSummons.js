@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const BrowserObj = require('./helpers/browser')
+const BrowserObj = require('./browser')
 
 const environment = "production"
 const browserSettings = new BrowserObj.Browser(environment)

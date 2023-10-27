@@ -1,13 +1,13 @@
-const { scrapeSummons } = require('./scrapeSummons');
-const json = require('JSON')
+// const { scrapeSummons } = require('./helpers/scrapeSummons');
+const summonHistory = require('./helpers/raw_data_Doburo');
 
 async function parseData(id) {
-	const link = "https://global-tog-info.ngelgames.com/history/" + id
+	// const link = "https://global-tog-info.ngelgames.com/history/" + id
 
-	summonData = await scrapeSummons(link);
+	// summonData = await scrapeSummons(link);
 	totalSummonData = []
 	
-	summonHistory = summonData.props.pageProps.histories
+	// summonHistory = summonData.props.pageProps.histories
 
 	for (let index=0; index<summonHistory.length; index++) {
 

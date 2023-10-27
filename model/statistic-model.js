@@ -2,7 +2,7 @@
 
 
 
-const { scrapeSummons } = require('./scrapeSummons');
+const { scrapeSummons } = require('../scrapeSummons');
 const json = require('JSON')
 
 async function parseData(url) {
