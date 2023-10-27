@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const BrowserObj = require('./browser')
+const BrowserObj = require('./helpers/browser')
 
 const environment = "production"
 const browserSettings = new BrowserObj.Browser(environment)
@@ -16,7 +16,7 @@ async function scrapeSummons(url) {
         If you encounter any bugs, please report them to https://github.com/puppeteer/puppeteer/issues/new/choose.
         **/
         //Old code returning Promise object, cause to error mentioned before on local machine. 
-        //Switched to getting actual data
+        //Switched to getting actual data 
         let settings = await browserSettings.then(obj => obj)
 
         const browser = await puppeteer.launch(settings)
@@ -29,7 +29,7 @@ async function scrapeSummons(url) {
 
         await browser.close();
         console.log(`Finishing scrape on the URL: ${url}`)
-        
+      
         return (result)
     }
     catch (error) {

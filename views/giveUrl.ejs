@@ -2,20 +2,6 @@
 <html lang="en">
 <head>
     <%- include('includes/head', {title: 'TOG:GJ-SS | Enter URL' }) %>
-    <script>
-        function validate() {
-            var input = document.querySelector('input[name="url"]');
-            var inputValue = input.value.trim(); // Remove leading/trailing white spaces
-            
-            if (inputValue === '' || inputValue.length > 60) {
-                alert('Please enter a valid summon history URL');
-                return false; // Prevent form submission
-            }
-            
-            // Continue with form submission if validation passes
-            return true;
-        }
-    </script>
 </head>
 
 <body>
@@ -26,8 +12,9 @@
         <div class="padding-content"></div>
             <div class="content">
                 <h2> Welcome to TOG:GJ Summon Statistics! </h2>
+
                 <h3> Enter your summon history URL below: </h3>
-                <form action="/summonstatistics/" method="GET" onsubmit="return validate()">
+                <form >
                     <div class="input-form">
                         <div class="input-field">
                             <input type="text" name="url" />
@@ -38,6 +25,7 @@
                             </button>
                         </div>
                     </div>
+                    <p class="warning">Note: After enter URL at field above, it would cut to your account id string.</p>
                 </form>
                 <h2> How to use:</h2>
                 <p>Go to the in-game summon page, and click on the summon history, as shown below:</p>
@@ -54,5 +42,29 @@
     <footer>
         <%- include('includes/footer'); %>
     </footer>
+    <script>
+        let input = document.querySelector('input[name="url"]');
+        let form = document.forms[0];
+        input.addEventListener("change", validate)
+        form.addEventListener("submit", sendData)
+
+        function validate() {
+            // Remove leading/trailing white spaces
+            var inputValue = input.value.trim(); 
+
+            //Check string for user id in it
+            const re = inputValue.match(/(MTA.{8}=?)|(M.{10}=?)/gm) || false
+            if(inputValue.length<12) return
+            if (!re[0]) {
+                alert('Please enter a valid summon history URL');
+            }
+            input.value = re[0] || inputValue
+            // Continue with form submission if validation passes
+        }
+        function sendData(event) {
+            event.preventDefault();
+            window.location.href ='/statistic/'+ input.value
+        }
+    </script>
 </body>
 </html>   

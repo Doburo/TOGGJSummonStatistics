@@ -1,10 +1,13 @@
+//Not connected right now
+
+
+
 const { scrapeSummons } = require('./scrapeSummons');
 const json = require('JSON')
 
-async function parseData(id) {
-	const link = "https://global-tog-info.ngelgames.com/history/" + id
+async function parseData(url) {
 
-	summonData = await scrapeSummons(link);
+	summonData = await scrapeSummons(url);
 	totalSummonData = []
 	
 	summonHistory = summonData.props.pageProps.histories
@@ -23,7 +26,7 @@ async function parseData(id) {
 	var destiny = new SummonList(summonData = destinyData, summonType = "Destiny");
 
 	var summonArray = [total, ancient, red, blue, destiny]
-
+	console.log(summonArray)
 	var summonStatistics = {}
 
 	for (let index = 0; index < summonArray.length; index++) {
@@ -55,7 +58,7 @@ async function parseData(id) {
 		summonTypeObject["averageEpicPity"] = summonArray[index].averageEpicPity
 	}
 	summonStatistics["Red"]["separateEventStatistics"] = red.separateEventStatistics
-
+	console.log(summonStatistics);
 	return (summonStatistics)
 };
 

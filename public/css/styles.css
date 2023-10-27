@@ -277,3 +277,10 @@ a.social-links:hover, .p-footer a:hover {
     width: auto;
     justify-content: center;
 }
+
+.warning{
+    font-size: 1.3em;
+    padding-top: 0.4em;
+    color: #F6FF00;
+    
+}
